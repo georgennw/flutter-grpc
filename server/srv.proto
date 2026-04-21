@@ -1,0 +1,24 @@
+syntax = "proto3";
+package main;
+
+option go_package = "github.com/georgennw/flutter-grpc";
+
+service TextSrv {
+    rpc GetTexts(TextRequest) returns (stream TextsAnswer) {}
+    rpc PostText(Text) returns (TextReply) {}
+}
+
+message TextRequest {}
+
+message TextReply {
+    string id = 1;
+}
+
+message TextsAnswer {
+    repeated Text texts = 1;
+}
+
+message Text {
+    string id = 1;
+    string t = 2;
+}
